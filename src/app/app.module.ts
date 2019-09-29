@@ -3,28 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { AppRoutingModule } from './app-router.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core.module';
+import { SharedModule } from './shared-recources/shared.module';
+import { FooterComponent } from './footer/footer.component';
+import { DropdownCloseDirective } from './shared-recources/dropdown-close.directive';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent
+    FooterComponent,
+    DropdownCloseDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CoreModule,
+    AuthModule,
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

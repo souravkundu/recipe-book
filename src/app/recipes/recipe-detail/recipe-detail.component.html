@@ -1,25 +1,33 @@
-<div class="row">
+<div class="row my-2 mb-md-2 mt-md-0">
   <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">
-        Recipe Details:
+    <div class="card bg-white m-0">
+      <div class="card-header bg-primary text-white">
+        <h4 class="text-warning text-center">{{selectedRecipe.name}}</h4>
       </div>
-      <img class="card-img-top" src="https://www.businessinsider.in/thumb/msid-66635723,width-600,resizemode-4/Now-you-can-trade-10-old-Maggi-wrappers-for-a-new-packet-Nestle-India-launches-pilot-project-to-fight-plastic-menace.jpg?131189" alt="">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" [src]="videoUrl" allowfullscreen></iframe>
+      </div>
       <div class="card-body">
-          <h4 class="card-title">Title</h4>
-          <p class="card-text">Body</p>
-          <button class="btn btn-outline-primary dropdown-toggle " data-toggle="dropdown">Manage</button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">
-              <a href="#" class="">To shopping List</a>
-            </li>
-            <li class="dropdown-item">
-                <a href="#" class="">Edit Recipe</a>
-              </li>
-              <li class="dropdown-item">
-                  <a href="#" class="">Delete recipe</a>
-              </li>
-          </ul>
+        <h4 class="card-title">Description</h4>
+        <p class="card-text text-muted">{{selectedRecipe.description}}</p>
+        <div class="mb-2">
+          <div class="dropdown" appDropdown>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">manage</button>
+            <div class="dropdown-menu" appDropdownClose>
+              <a class="dropdown-item" (click)="addToshopList()" style="cursor: pointer">to shopping List</a>
+              <a class="dropdown-item" style="cursor: pointer" routerLink="edit">edit Recipe</a>
+              <a class="dropdown-item" style="cursor: pointer" (click)="onDeleteRecipe()">delete recipe</a>
+              <!-- <a class="dropdown-item" style="cursor: pointer" routerLink="preparation">preparation steps</a> -->
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h4>Ingredients:</h4>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of selectedRecipe.ingredientList">
+            {{item.name}} ( {{item.amount}} {{ item.unit === '#' ? '': item.unit }} )
+          </li>
+        </ul>
       </div>
     </div>
   </div>

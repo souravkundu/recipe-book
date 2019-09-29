@@ -1,0 +1,12 @@
+p.b {
+    white-space: nowrap; 
+    word-wrap: break-word;
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .activeLink {
+    background-color: aliceblue;
+  }

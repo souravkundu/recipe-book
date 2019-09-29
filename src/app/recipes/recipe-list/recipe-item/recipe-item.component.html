@@ -1,3 +1,17 @@
-<p>
-  recipe-item works!
-</p>
+<div [routerLink]="[index]" routerLinkActive="router-link-active"
+    class="list-group-item d-flex justify-content-between align-items-center py-2 my-1" style="cursor: pointer;" appActiveItem>
+    <div class="row">
+        <div class="col-8 pr-0">
+            <div class="justify-content-between align-items-center">
+                <h4 class="list-group-item-heading  p-2">{{recipeItem.name}}</h4>
+                <p class="list-group-item-text  m-2 text-muted"><small>{{recipeItem.description}}</small></p>
+            </div>
+        </div>
+        <div class="col-4 py-2 pr-2 pl-0">
+            <span class="bg-warning">
+                <img [src]="recipeItem.imagePath" alt="no image found" class="img-thumbnail"
+                    style="height: 2cm; width: 4cm;">
+            </span>
+        </div>
+    </div>
+</div>

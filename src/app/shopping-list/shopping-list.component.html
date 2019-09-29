@@ -1,13 +1,29 @@
 <div class="row">
   <div class="col-md-10 p-0">
-    <app-shopping-edit></app-shopping-edit>
     <hr>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of ingredients">
-        <a href="#" class="" >
-          {{ingredient.name}} ({{ingredient.amount}})
-        </a>
-      </li>
-    </ul>
+    <h4 class="text-warning">add ingredients to shopping list</h4>
+    <hr>
+    <app-shopping-edit></app-shopping-edit>
+    <div id="printVoucher">
+      <hr>
+      <h4 class="text-warning">shopping list</h4>
+      <hr>
+      <ol class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of ingredients; let i=index" (click)="onSelect(i)">
+          <a class="text-primary">
+          <span class="m-0 p-0">  {{ ingredient.name}} - {{ingredient.amount}} {{ ingredient.unit==='#' ? '': ingredient.unit }}</span> 
+            <div class="d-flex justify-content-between float-right">
+              <div class="mr-1">
+                <i class="fa fa-pencil-square-o btn btn-outline-primary float-right" aria-hidden="true"></i>
+              </div>
+              <div>
+                <i class="fa fa-trash btn btn-outline-danger" aria-hidden="true" (click)="onDelete(i)"></i>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ol>
+    </div>
+    <button class="btn btn-primary my-2" printSectionId="printVoucher" ngxPrint>print list</button>
   </div>
 </div>

@@ -1,0 +1,61 @@
+<div class="row justify-content-center" *ngIf="!loading">
+  <div class="col-xs-12 col-md-6 py-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mt-3">
+          <div class="card-header text-center">{{ signInMode ? 'Authenticate' : 'Register'}}</div>
+          <div class="card-body p-5">
+            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                  </div>
+                  <input type="email" id="email" class="form-control" ngModel required email name="email"
+                    placeholder="email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+                  </div>
+                  <input type="password" id="password" class="form-control" ngModel required name="password"
+                    placeholder="password">
+                </div>
+              </div>
+              <div class="form-group" *ngIf="!signInMode">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+                  </div>
+                  <input type="password" id="confimPassword" class="form-control" ngModel required
+                    name="confirmPassword" placeholder="confirm password" (blur)="checkValidity(f)">
+                </div>
+              </div>
+              <div class="alert alert-danger pb-1 mt-1" *ngIf="!validity">
+                <p>{{ errorMessage }}</p>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary btn-block"
+                  [disabled]="!f.valid">{{ signInMode ? 'Sign in' : 'Sign up'}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xs-12 my-3">
+        <h6 class="text-warning">{{ signInMode ? 'Not yet' : 'Already'}} registered?</h6>
+        <button type="submit" class="btn btn-sm btn-warning ml-1" (click)="onSwitch()"> Switch to
+          {{ signInMode ? 'Sign up' : 'Sign in'}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="loading">
+  <div class="col-md-12">
+      <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>
